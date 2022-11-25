@@ -59,27 +59,16 @@ void PrintMatrix(int[,] matrix)
 int[,] SumProductOfTwoMatrixes(int[,] matrixOne, int[,] matrixTwo)
 {
     int[,] productMatrix = new int[columnFirst, rowSecond];
-    int k = 0;
-    int n = 0;
-    int l=0;
-    int sum=default;
 
     for (int i = 0; i < productMatrix.GetLength(0); i++)
     {
         for (int j = 0; j < productMatrix.GetLength(1); j++)
         {
-            productMatrix[n,l]= matrixOne[i, j] * matrixTwo[j, i];
-          
-           // productMatrix[n,l]
+            for (int k = 0; k < productMatrix.GetLength(1); k++)
+            {
+                productMatrix[i, j] += matrixOne[i, k] * matrixTwo[k, j];
+            }
         }
-        
-
-
-
-    }                    //00=00*00+ 
-    return productMatrix;//01=01*10+ 
-                         //02=02*20+  
-
-
-}                    //10=10*00+  11*10 
-                     //11=10*01+  11*11
+    }
+    return productMatrix;
+}
