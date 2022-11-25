@@ -23,7 +23,7 @@ if (!isParsedLines || !isParsedColumns)
 int[,] filledMatrix = FillMatrix(lines, columns);
 PrintMatrix(filledMatrix);
 Console.WriteLine();
-int[,] devidedMatrix = DevideIntoSortedArrayByRows(filledMatrix);
+int[,] devidedMatrix = SortMatrix(filledMatrix);
 PrintMatrix(devidedMatrix);
 
 int[,] FillMatrix(int line, int column)
@@ -52,7 +52,7 @@ void PrintMatrix(int[,] matrix)
     }
 }
 
-int[,] DevideIntoSortedArrayByRows(int[,] matrix)
+int[,] SortMatrix(int[,] matrix)
 {
 
     int temp = default;
