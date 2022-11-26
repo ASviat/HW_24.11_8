@@ -7,74 +7,62 @@
 // 26(1,0,1) 55(1,1,1)
 
 int[,,] threeDMatrix = new int[2, 2, 2];
-threeDMatrix = Fill3DWithNonRepeatingDigits(threeDMatrix);
 
+FillMatrix(threeDMatrix);
+PrintMatrix(threeDMatrix);
 
-Print3DMatrix(threeDMatrix);
-
-
-int IsThisDigitInMatrix(int[,,] matrix, int digit)
+void FillMatrix(int [,,] matrix)
 {
-
     Random random = new Random();
-
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
             for (int k = 0; k < matrix.GetLength(2); k++)
             {
-                for (int l = 0; l < matrix.GetLength(2); l++)
+                int number = random.Next(10, 100);
+                if (CheckNumberExist(matrix, number) == true)
                 {
-                    digit = random.Next(0, 11);
-                    if (digit == matrix[i, j, k])
-                    {
-                        IsThisDigitInMatrix(matrix, digit);
-                    }
-                    if (digit != matrix[i, j, k])
-                    {;
-                        return digit;
-                    }
+                    matrix[i, j, k] = number;
+                }
+                else
+                {
+                    k--;
                 }
             }
         }
-
     }
-    return IsThisDigitInMatrix(matrix, digit);
 }
 
-int[,,] Fill3DWithNonRepeatingDigits(int[,,] matrix)
+bool CheckNumberExist(int [,,] array, int random)
 {
-    //Random random = new Random();
-
-    for (int i = 0; i < matrix.GetLength(0); i++)
+    bool result = true;
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-        for (int j = 0; j < matrix.GetLength(1); j++)
+        for (int j = 0; j < array.GetLength(1); j++)
         {
-            for (int k = 0; k < matrix.GetLength(2); k++)
+            for (int k = 0; k < array.GetLength(2); k++)
             {
-                matrix[i, j, k] = IsThisDigitInMatrix(matrix, matrix[i, j, k]);
+                if(array[i, j, k] == random)
+                result = false;
             }
         }
     }
-    return matrix;
+    return result;
 }
 
 
-void Print3DMatrix(int[,,] matrix)
+void PrintMatrix(int [,,] matrix)
 {
-
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
             for (int k = 0; k < matrix.GetLength(2); k++)
             {
-                Console.Write($"{matrix[i, j, k]}({i},{j},{k}) ");
-
+                Console.Write($"{matrix[i, j, k]}{(i, j, k)}  ");
             }
             Console.WriteLine();
-        }
+        } 
     }
 }
-
